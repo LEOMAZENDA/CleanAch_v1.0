@@ -54,6 +54,13 @@ namespace CleanArch.Domain.Tests
         }
 
         [Fact]
+        public void CreateProduct_WithNullImageName_NoNullReferenceException()
+        {
+            Action action = () => new Product(1, "Product Name", "Product Description", 9.99m, 99, null);
+            action.Should().NotThrow<NullReferenceException>();
+        }
+
+        [Fact]
         public void CreateProduct_WithEmptyImageName_NoDomainException()
         {
             Action action = () => new Product(1, "Product Name", "Product Description", 9.99m, 99, "");
@@ -66,7 +73,7 @@ namespace CleanArch.Domain.Tests
             Action action = () => new Product(1, "Product Name", "Product Description", -9.99m,
                 99, "");
             action.Should().Throw<CleanArch.Domain.Validation.DomainExceptionValidation>()
-                 .WithMessage("Valor do preço invalido");
+                 .WithMessage("Invalid price value");
         }
 
         [Theory]
@@ -76,7 +83,8 @@ namespace CleanArch.Domain.Tests
             Action action = () => new Product(1, "Pro", "Product Description", 9.99m, value,
                 "product image");
             action.Should().Throw<CleanArch.Domain.Validation.DomainExceptionValidation>()
-                   .WithMessage("Valor do Estoque invalido");
+                   .WithMessage("Invalid stock value");
         }
+
     }
 }

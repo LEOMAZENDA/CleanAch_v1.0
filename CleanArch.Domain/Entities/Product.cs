@@ -1,9 +1,5 @@
 ﻿using CleanArch.Domain.Validation;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CleanArch.Domain.Entities
 {
@@ -14,9 +10,6 @@ namespace CleanArch.Domain.Entities
         public decimal Price { get; private set; }
         public int Stock { get; private set; }
         public string Image { get; private set; }
-        public int CategoryId { get; set; }
-        public Category Category { get; set; }
-
 
         public Product(string name, string description, decimal price, int stock, string image)
         {
@@ -25,47 +18,47 @@ namespace CleanArch.Domain.Entities
 
         public Product(int id, string name, string description, decimal price, int stock, string image)
         {
-            DomainExceptionValidation.When(id < 0, "O valor do Id é ivalido");
+            DomainExceptionValidation.When(id < 0, "Invalid Id value.");
             Id = id;
             ValidateDomain(name, description, price, stock, image);
         }
 
-        public void Update(string name, string description, decimal price, int stock, string image, int categotyId)
+        public void Update(string name, string description, decimal price, int stock, string image, int categoryId)
         {
             ValidateDomain(name, description, price, stock, image);
-            CategoryId = categotyId;
+            CategoryId = categoryId;
         }
 
-
-        public void ValidateDomain(string name, string description, decimal price, int stock, string image)
+        private void ValidateDomain(string name, string description, decimal price, int stock, string image)
         {
             DomainExceptionValidation.When(string.IsNullOrEmpty(name),
-                 "Nome Inválido. Este campo é obrigatorio");
+                "Invalid name. Name is required");
 
             DomainExceptionValidation.When(name.Length < 3,
-                "Nome Curto. Este campo deve conter no minimo 3 caracteres");
-
-            DomainExceptionValidation.When(name.Length > 50,
-              "Nome Comprido. Este campo deve conter no máximo 50 caracteres");
+                "Invalid name, too short, minimum 3 characters");
 
             DomainExceptionValidation.When(string.IsNullOrEmpty(description),
-                "Descrição Inválido.Este campo é obrigatorio");
+                "Invalid description. Description is required");
 
-            DomainExceptionValidation.When(price < 0,
-                            "Preço Inválido. Este campo não deve ser menor que zero (0)");
+            DomainExceptionValidation.When(description.Length < 5,
+                "Invalid description, too short, minimum 5 characters");
 
-             DomainExceptionValidation.When(stock < 0,
-                            "Estoque Inválido. Este campo não deve ser menor que zero (0)");
+            DomainExceptionValidation.When(price < 0, "Invalid price value");
 
-            DomainExceptionValidation.When(image.Length > 250,
-                "Nome Inválido. Este campo o seu valor máximo é de 250 caracteres");
+            DomainExceptionValidation.When(stock < 0, "Invalid stock value");
+
+            DomainExceptionValidation.When(image?.Length > 250,
+                "Invalid image name, too long, maximum 250 characters");
 
             Name = name;
             Description = description;
             Price = price;
             Stock = stock;
             Image = image;
-            CreateDate = DateTime.Now;
+
         }
+
+        public int CategoryId { get; set; }
+        public Category Category { get; set; }
     }
 }

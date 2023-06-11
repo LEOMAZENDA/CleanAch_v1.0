@@ -7,7 +7,7 @@ namespace CleanArch.Domain.Tests
 {
     public class CategoryUnitTest1
     {
-        [Fact(DisplayName = "Criar Categoria com estado valido")]
+        [Fact(DisplayName = "Create Category With Valid State")]
         public void CreateCategory_WithValidParameters_ResultObjectValidState()
         {
             Action action = () => new Category(1, "Category Name ");
@@ -21,7 +21,7 @@ namespace CleanArch.Domain.Tests
             Action action = () => new Category(-1, "Category Name ");
             action.Should()
                 .Throw<CleanArch.Domain.Validation.DomainExceptionValidation>()
-                 .WithMessage("Valor de Id inválio.");
+                 .WithMessage("Invalid Id value.");
         }
 
         [Fact]
@@ -30,7 +30,7 @@ namespace CleanArch.Domain.Tests
             Action action = () => new Category(1, "Ca");
             action.Should()
                 .Throw<CleanArch.Domain.Validation.DomainExceptionValidation>()
-                   .WithMessage("Nome Invalido, muito curso. deve conter no minimo 3 characteres");
+                   .WithMessage("Invalid name, too short, minimum 3 characters");
         }
 
         [Fact]
