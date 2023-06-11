@@ -13,5 +13,11 @@ namespace CleanArch.Domain.Entities
         public DateTime CreateDate { get; protected set; }
         public DateTime LastUpdate { get; protected set; }
 
+        public EntityBase()
+        {
+                CreateDate = DateTime.Now;
+                LastUpdate = DateTime.Now;
+        }
+
     }
 }

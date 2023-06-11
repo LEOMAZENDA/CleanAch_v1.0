@@ -19,6 +19,7 @@ namespace CleanArch.Domain.Entities
         public Category(int id, string name)
         {
             DmainExceptionValidate.When(id < 0, "Id Inválido");
+            Id = id;
            ValidateDomain(name);
         }
         public void Update(string name) {
@@ -29,12 +30,10 @@ namespace CleanArch.Domain.Entities
         {
             DmainExceptionValidate.When(string.IsNullOrEmpty(name),
                 "Nome Inválido.Este campo é obrigatorio");
-
-            DmainExceptionValidate.When(string.IsNullOrEmpty(name),
+            DmainExceptionValidate.When(name.Length < 3,
                 "Nome Inválido.Este campo é obrigatorio");
 
-            DmainExceptionValidate.When(string.IsNullOrEmpty(name),
-                            "Nome Inválido.Este campo é obrigatorio");
+            Name = name;
         }
     }
 }

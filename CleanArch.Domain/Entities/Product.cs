@@ -26,6 +26,7 @@ namespace CleanArch.Domain.Entities
         public Product(int id, string name, string description, decimal price, int stock, string image)
         {
             DmainExceptionValidate.When(id < 0, "O valor do Id é ivalido");
+            Id = id;
             ValidateDomain(name, description, price, stock, image);
         }
 
@@ -40,8 +41,10 @@ namespace CleanArch.Domain.Entities
         {
             DmainExceptionValidate.When(string.IsNullOrEmpty(name),
                  "Nome Inválido. Este campo é obrigatorio");
+
             DmainExceptionValidate.When(name.Length < 3,
                 "Nome Curto. Este campo deve conter no minimo 3 caracteres");
+
             DmainExceptionValidate.When(name.Length > 50,
               "Nome Comprido. Este campo deve conter no máximo 50 caracteres");
 
@@ -62,6 +65,7 @@ namespace CleanArch.Domain.Entities
             Price = price;
             Stock = stock;
             Image = image;
+            CreateDate = DateTime.Now;
         }
     }
 }
