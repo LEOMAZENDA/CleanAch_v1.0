@@ -25,7 +25,7 @@ namespace CleanArch.Domain.Entities
 
         public Product(int id, string name, string description, decimal price, int stock, string image)
         {
-            DmainExceptionValidate.When(id < 0, "O valor do Id é ivalido");
+            DomainExceptionValidation.When(id < 0, "O valor do Id é ivalido");
             Id = id;
             ValidateDomain(name, description, price, stock, image);
         }
@@ -39,25 +39,25 @@ namespace CleanArch.Domain.Entities
 
         public void ValidateDomain(string name, string description, decimal price, int stock, string image)
         {
-            DmainExceptionValidate.When(string.IsNullOrEmpty(name),
+            DomainExceptionValidation.When(string.IsNullOrEmpty(name),
                  "Nome Inválido. Este campo é obrigatorio");
 
-            DmainExceptionValidate.When(name.Length < 3,
+            DomainExceptionValidation.When(name.Length < 3,
                 "Nome Curto. Este campo deve conter no minimo 3 caracteres");
 
-            DmainExceptionValidate.When(name.Length > 50,
+            DomainExceptionValidation.When(name.Length > 50,
               "Nome Comprido. Este campo deve conter no máximo 50 caracteres");
 
-            DmainExceptionValidate.When(string.IsNullOrEmpty(description),
+            DomainExceptionValidation.When(string.IsNullOrEmpty(description),
                 "Descrição Inválido.Este campo é obrigatorio");
 
-            DmainExceptionValidate.When(price < 0,
+            DomainExceptionValidation.When(price < 0,
                             "Preço Inválido. Este campo não deve ser menor que zero (0)");
 
-             DmainExceptionValidate.When(stock < 0,
+             DomainExceptionValidation.When(stock < 0,
                             "Estoque Inválido. Este campo não deve ser menor que zero (0)");
 
-            DmainExceptionValidate.When(image.Length > 250,
+            DomainExceptionValidation.When(image.Length > 250,
                 "Nome Inválido. Este campo o seu valor máximo é de 250 caracteres");
 
             Name = name;

@@ -6,15 +6,15 @@ using System.Threading.Tasks;
 
 namespace CleanArch.Domain.Validation
 {
-    public class DmainExceptionValidate : Exception
+    public class DomainExceptionValidation : Exception
     {
 
-        public DmainExceptionValidate(string error) : base(error) 
+        public DomainExceptionValidation(string error) : base(error) 
         { }
 
         public static void When(bool hasError, string error) { 
         if (hasError) { 
-            throw new DmainExceptionValidate(error);
+            throw new DomainExceptionValidation(error);
             }
         }
     }

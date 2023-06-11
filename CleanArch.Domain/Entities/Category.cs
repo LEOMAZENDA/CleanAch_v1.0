@@ -18,7 +18,7 @@ namespace CleanArch.Domain.Entities
 
         public Category(int id, string name)
         {
-            DmainExceptionValidate.When(id < 0, "Id Inválido");
+            DomainExceptionValidation.When(id < 0, "Id Inválido");
             Id = id;
            ValidateDomain(name);
         }
@@ -28,9 +28,9 @@ namespace CleanArch.Domain.Entities
 
         private void ValidateDomain (string name)
         {
-            DmainExceptionValidate.When(string.IsNullOrEmpty(name),
+            DomainExceptionValidation.When(string.IsNullOrEmpty(name),
                 "Nome Inválido.Este campo é obrigatorio");
-            DmainExceptionValidate.When(name.Length < 3,
+            DomainExceptionValidation.When(name.Length < 3,
                 "Nome Inválido.Este campo é obrigatorio");
 
             Name = name;
