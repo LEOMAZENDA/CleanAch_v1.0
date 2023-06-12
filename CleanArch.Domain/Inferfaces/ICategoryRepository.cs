@@ -12,8 +12,8 @@ namespace CleanArch.Domain.Inferfaces
         Task<IEnumerable<Category>> GetAll();
         Task<Category> GetById(int? id);
 
-        Task<Category> Create(Category oroduct);
-        Task<Category> Update(Category oroduct);
-        Task<Category> Delete(int? id);
+        Task<Category> Create(Category category);
+        Task<Category> Update(Category category);
+        Task<Category> Remove(Category category);
     }
 }

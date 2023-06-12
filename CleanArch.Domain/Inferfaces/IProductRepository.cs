@@ -12,7 +12,6 @@ namespace CleanArch.Domain.Inferfaces
         Task<IEnumerable<Product>> GetAllAsync();
         Task<Product> GetByIdAsync(int? id);
         Task<Product> GetProductCategoryAsync(int? id);
-
         Task<Product> CreateAsync(Product poroduct);
         Task<Product> UpdateAsync(Product poroduct);
         Task<Product> DeleteAsync(int? id);
