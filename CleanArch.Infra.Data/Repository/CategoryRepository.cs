@@ -10,9 +10,9 @@ using System.Threading.Tasks;
 
 namespace CleanArch.Infra.Data.Repository
 {
-    public class CategoryRepository : ICategoryRepository
+    public class CategoryRepository : ICategory
     {
-        ProjectDbContext _categoryContext;
+        private ProjectDbContext _categoryContext;
         public CategoryRepository(ProjectDbContext context)
         {
             _categoryContext = context;

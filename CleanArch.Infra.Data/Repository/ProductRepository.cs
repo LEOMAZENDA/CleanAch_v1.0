@@ -1,6 +1,7 @@
 ﻿using CleanArch.Domain.Entities;
 using CleanArch.Domain.Inferfaces;
 using CleanArch.Infra.Data.DataContext;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,44 +10,54 @@ using System.Threading.Tasks;
 
 namespace CleanArch.Infra.Data.Repository
 {
-    public class ProductRepository : IProductRepository
+    public class ProductRepository : IProduct
     {
 
-        ProjectDbContext _oroductContext;
+       private ProjectDbContext _poroductContext;
 
-        public ProductRepository(ProjectDbContext oroductContext)
+        public ProductRepository(ProjectDbContext poroductContext)
         {
-            _oroductContext = oroductContext;
+            _poroductContext = poroductContext;
         }
-
-        public async Task<Product> CreateAsync(Product poroduct)
-        {
-            throw new NotImplementedException();
-        }
-
-        public async Task<Product> DeleteAsync(int? id)
-        {
-            throw new NotImplementedException();
-        }
+            
 
         public async Task<IEnumerable<Product>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            return await _poroductContext.Products.ToListAsync();
         }
 
         public async Task<Product> GetByIdAsync(int? id)
         {
-            throw new NotImplementedException();
+            return await _poroductContext.Products.FindAsync(id);
         }
 
-        public Task<Product> GetProductCategoryAsync(int? id)
+        public async Task<Product> GetProductCategoryAsync(int? id)
         {
-            throw new NotImplementedException();
+            return await _poroductContext.Products.Include(c => c.Category)
+                .SingleOrDefaultAsync(p => p.Id == id); 
+            // esse Icclude é conhecido como carregamento adiantado ou eager loading
         }
 
-        public Task<Product> UpdateAsync(Product poroduct)
+        public async Task<Product> CreateAsync(Product poroduct)
         {
-            throw new NotImplementedException();
+            _poroductContext.Add(poroduct);
+            await _poroductContext.SaveChangesAsync();
+            return poroduct;
         }
+
+        public async Task<Product> UpdateAsync(Product poroduct)
+        {
+            _poroductContext.Update(poroduct);
+            await _poroductContext.SaveChangesAsync();
+            return poroduct;
+        }
+
+        public async Task<Product> DeleteAsync(Product poroduct)
+        {
+            _poroductContext.Remove(poroduct);
+            await _poroductContext.SaveChangesAsync();
+            return poroduct;
+        }
+       
     }
 }
