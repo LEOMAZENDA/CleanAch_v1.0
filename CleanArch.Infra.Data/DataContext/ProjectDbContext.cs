@@ -1,11 +1,5 @@
 ﻿using CleanArch.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CleanArch.Infra.Data.DataContext
 {
@@ -19,11 +13,38 @@ namespace CleanArch.Infra.Data.DataContext
         public DbSet<Product> Products { get; set; }
 
 
+        //#region PEGANDO STRING DE CONEXÃO PELO appsettings
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //{
+        //    if (!optionsBuilder.IsConfigured)
+        //    {
+        //        optionsBuilder.UseSqlServer(GetStringConectionConfig());
+        //        base.OnConfiguring(optionsBuilder);
+        //    }
+        //}
+
+
+        //private string GetStringConectionConfig()
+        //{
+        //    IConfigurationRoot configurationManager = new ConfigurationBuilder()
+        //        .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
+        //        .AddJsonFile("appsettings.json")
+        //        .Build();
+        //    string strCon = configurationManager.GetConnectionString("DefaultConnection");
+
+        //    return strCon;
+        //}
+
+        //#endregion
+
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
             builder.ApplyConfigurationsFromAssembly(typeof(ProjectDbContext).Assembly); 
             // Devido a esse builkd na lina de cima, o Enity pega de forma automatica as classes configuradas via fluenteApi 
         }
+
+
     }
 }

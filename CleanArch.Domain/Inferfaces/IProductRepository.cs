@@ -14,6 +14,6 @@ namespace CleanArch.Domain.Inferfaces
         Task<Product> GetProductCategoryAsync(int? id);
         Task<Product> CreateAsync(Product poroduct);
         Task<Product> UpdateAsync(Product poroduct);
-        Task<Product> DeleteAsync(int? id);
+        Task<Product> DeleteAsync(Product poroduct);
     }
 }
