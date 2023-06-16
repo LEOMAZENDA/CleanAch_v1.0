@@ -15,7 +15,7 @@ namespace CleanArch.Infra.Data.Repository
 
        private ProjectDbContext _poroductContext;
 
-        public ProductRepository(ProjectDbContext poroductContext)
+        public ProductRepository(ProjectDbContext oroductContext)
         {
             _poroductContext = poroductContext;
         }
