@@ -1,0 +1,59 @@
+﻿@model IEnumerable<CleanArch.Application.DTOs.CategoryDTO>
+
+@{
+    ViewData["Title"] = "Gestão de Categorias";
+}
+<style>
+     .modal-lg{
+         max-width: 80%;
+     }
+</style>
+
+<div>
+    <h2>@ViewData["Title"]</h2>
+</div>
+<hr />
+<div class="row">
+    <div class="col-md-12">
+        <div>
+            <div class="pull-left">
+                <a asp-action="Create" class="btn btn-primary">
+                    <span title="Adicionar" class="fas fa-plus"> Adicioar</span>
+                    </a>
+            </div>
+        </div>
+    </div>
+</div>
+<br />
+<div class="panen panel-default">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.Name)</th>
+                <th>acções</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id" title="Edit" class="btn btn-warning">
+                            <span class="fas fa-edit">Editar</span>
+                        </a>
+
+                        <a asp-action="Details" asp-route-id="@item.Id" title="Details" class="btn btn-secondary">
+                            <span class="fas fa-edit">detalhes</span>
+                        </a>
+
+                        <a asp-action="Delete" asp-route-id="@item.Id" title="Delete" class="btn btn-danger">
+                            <span class="fas fa-edit">Excluir</span>
+                        </a>                       
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</div>

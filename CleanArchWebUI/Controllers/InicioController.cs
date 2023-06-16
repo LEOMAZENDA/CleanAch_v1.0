@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 
 namespace CleanArchWebUI.Controllers
 {
-    public class HomeController : Controller
+    public class InicioController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly ILogger<InicioController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        public InicioController(ILogger<InicioController> logger)
         {
             _logger = logger;
         }
@@ -21,12 +21,7 @@ namespace CleanArchWebUI.Controllers
         public IActionResult Index()
         {
             return View();
-        }
-
-        public IActionResult Privacy()
-        {
-            return View();
-        }
+        } 
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

@@ -1,4 +1,7 @@
-﻿using CleanArch.Domain.Inferfaces;
+﻿using CleanArch.Application.Interfaces;
+using CleanArch.Application.Mappings;
+using CleanArch.Application.Services;
+using CleanArch.Domain.Inferfaces;
 using CleanArch.Infra.Data.DataContext;
 using CleanArch.Infra.Data.Repository;
 using Microsoft.EntityFrameworkCore;
@@ -16,9 +19,16 @@ namespace CleanArch.Infra.IoC
             ), b => b.MigrationsAssembly(typeof(ProjectDbContext).Assembly.FullName)));
 
             //AddScoped é o recumendado para as applicações web
-            services.AddScoped<ICategory, CategoryRepository>();
-            services.AddScoped<IProduct, ProductRepository>();
+            //ADICIONANDO DEPENDÉNÇIAS DE DOMÍNIO E REPOSITRORIO
+            services.AddScoped<ICategoryRepository, CategoryRepository>();
+            services.AddScoped<IProductRepository, ProductRepository>();
 
+            //ADICIONANDO DEPENDÉNÇIAS DE APPLICATION E SERVICES
+            services.AddScoped<IProductService, ProductService>();
+            services.AddScoped<ICategoryService, CategoryService>();
+
+            //ADICIONANDO SERVIÇOS DO AURO MAPPER
+            services.AddAutoMapper(typeof(DoamintoDTOMappingProfile));
             return services;
         }
     }

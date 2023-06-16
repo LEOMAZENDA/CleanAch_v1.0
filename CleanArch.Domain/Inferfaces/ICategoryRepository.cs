@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CleanArch.Domain.Inferfaces
 {
-    public interface ICategory
+    public interface ICategoryRepository
     {
         Task<IEnumerable<Category>> GetAll();
         Task<Category> GetById(int? id);

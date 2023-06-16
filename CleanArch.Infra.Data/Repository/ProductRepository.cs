@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace CleanArch.Infra.Data.Repository
 {
-    public class ProductRepository : IProduct
+    public class ProductRepository : IProductRepository
     {
 
        private ProjectDbContext _poroductContext;
