@@ -15,7 +15,7 @@ namespace CleanArch.Infra.Data.Repository
 
        private ProjectDbContext _poroductContext;
 
-        public ProductRepository(ProjectDbContext oroductContext)
+        public ProductRepository(ProjectDbContext poroductContext)
         {
             _poroductContext = poroductContext;
         }
@@ -57,7 +57,6 @@ namespace CleanArch.Infra.Data.Repository
             _poroductContext.Remove(poroduct);
             await _poroductContext.SaveChangesAsync();
             return poroduct;
-        }
-       
+        }       
     }
 }
