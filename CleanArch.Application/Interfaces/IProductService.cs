@@ -11,7 +11,7 @@ namespace CleanArch.Application.Interfaces
     {
         Task<IEnumerable<ProductDTO>> GetAll();
         Task<ProductDTO> GetById(int? id);
-        Task<ProductDTO> GetProductCategory(int? id);
+        //Task<ProductDTO> GetProductCategory(int? id);
 
         Task Add(ProductDTO productDTO);
         Task Update(ProductDTO productDTO);

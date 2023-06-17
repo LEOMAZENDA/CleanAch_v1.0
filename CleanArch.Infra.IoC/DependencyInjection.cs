@@ -4,6 +4,7 @@ using CleanArch.Application.Services;
 using CleanArch.Domain.Inferfaces;
 using CleanArch.Infra.Data.DataContext;
 using CleanArch.Infra.Data.Repository;
+using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -34,7 +35,13 @@ namespace CleanArch.Infra.IoC
 
             //ADICIONANDO SERVIÇOS DO AURO MAPPER
             services.AddAutoMapper(typeof(DoamintoDTOMappingProfile));
+
+            //ADICIONANDO SERVIÇOS DO MediatR
+            var myhendlers = AppDomain.CurrentDomain.Load("CleanArch.Application");
+            services.AddMediatR(myhendlers);
+
             return services;
+
         }
     }
 }

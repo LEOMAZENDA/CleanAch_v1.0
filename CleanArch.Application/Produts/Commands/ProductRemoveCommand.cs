@@ -3,11 +3,11 @@ using MediatR;
 
 namespace CleanArch.Application.Produts.Commands
 {
-    public class ProductsRemuveCommand : IRequest<Product>
+    public class ProductRemoveCommand : IRequest<Product>
     {
         public int Id { get; set; }
 
-        public ProductsRemuveCommand(int id)
+        public ProductRemoveCommand(int id)
         {
             Id = id;
         }

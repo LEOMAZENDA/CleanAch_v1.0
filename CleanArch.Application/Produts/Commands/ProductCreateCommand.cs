@@ -1,6 +1,6 @@
 ﻿namespace CleanArch.Application.Produts.Commands
 {
-    public class ProductsCreateCommand : ProductCommands
+    public class ProductCreateCommand : ProductCommands
     {
     }
 }
