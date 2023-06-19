@@ -27,12 +27,7 @@ namespace CleanArch.Application.Services
              var categoryEntities = await _categoryRepository.GetAll();
              return _mapper.Map<IEnumerable<CategoryDTO>>(categoryEntities);
         }
-
-        public async Task<CategoryDTO> GetById(int id)
-        {
-            var categoryEntity = await _categoryRepository.GetById(id);
-            return _mapper.Map<CategoryDTO>(categoryEntity);
-        }
+              
 
         public async Task Add(CategoryDTO categoryDTO)
         {
@@ -50,6 +45,12 @@ namespace CleanArch.Application.Services
         {
             var categoryEntity = _categoryRepository.GetById(id).Result;
             await _categoryRepository.Remove(categoryEntity);
+        }
+
+        public async Task<CategoryDTO> GetById(int? id)
+        {
+            var categoryEntity = await _categoryRepository.GetById(id);
+            return _mapper.Map<CategoryDTO>(categoryEntity);
         }
     }
 }

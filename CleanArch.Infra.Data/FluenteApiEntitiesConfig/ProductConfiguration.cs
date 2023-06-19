@@ -13,6 +13,8 @@ namespace CleanArch.Infra.Data.FluenteApiEntitiesConfig
             builder.Property(p => p.Name).HasMaxLength(100).IsRequired();
             builder.Property(p => p.Description).HasMaxLength(250).IsRequired();
             builder.Property(p => p.Price).HasPrecision(18, 2);
+            //builder.Property(p => p.CreateDate).HasDefaultValueSql("getdate()");
+            //builder.Property(p => p.LastUpdate).HasDefaultValueSql("getdate()");
         }
     }
 }

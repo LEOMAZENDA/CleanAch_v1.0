@@ -28,15 +28,19 @@ namespace CleanArch.Infra.Data.Repository
 
         public async Task<Product> GetByIdAsync(int? id)
         {
-            return await _poroductContext.Products.FindAsync(id);
-        }
-
-        public async Task<Product> GetProductCategoryAsync(int? id)
-        {
-            return await _poroductContext.Products.Include(c => c.Category)
-                .SingleOrDefaultAsync(p => p.Id == id); 
+            //return await _poroductContext.Products.FindAsync(id);
+            return await _poroductContext.Products
+                .Include(c => c.Category)
+                .SingleOrDefaultAsync(p => p.Id == id);
             // esse Icclude é conhecido como carregamento adiantado ou eager loading
         }
+
+        //public async Task<Product> GetProductCategoryAsync(int? id)
+        //{
+        //    return await _poroductContext.Products.Include(c => c.Category)
+        //        .SingleOrDefaultAsync(p => p.Id == id); 
+        //    // esse Icclude é conhecido como carregamento adiantado ou eager loading
+        //}
 
         public async Task<Product> CreateAsync(Product poroduct)
         {
